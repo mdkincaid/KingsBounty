@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://j2a21cojw2oc"]
+
+[ext_resource type="PackedScene" uid="uid://d0ckgbf6pqjwj" path="res://Player.tscn" id="1_a0ruf"]
+[ext_resource type="Script" path="res://Main.gd" id="1_ik6je"]
+[ext_resource type="PackedScene" uid="uid://qsve10fpctoo" path="res://Coin.tscn" id="2_3glw7"]
+[ext_resource type="PackedScene" uid="uid://c6i8ijxpq3xn" path="res://SpeedBoost.tscn" id="3_jj6v8"]
+[ext_resource type="PackedScene" uid="uid://kelaiuqlmxfp" path="res://HUD.tscn" id="4_lc5ny"]
+[ext_resource type="PackedScene" uid="uid://jbnwpaxjspla" path="res://Goblin.tscn" id="6_xdxlf"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ik6je")
+coin_scene = ExtResource("2_3glw7")
+boost_scene = ExtResource("3_jj6v8")
+coins_to_win = 25
+
+[node name="Player" parent="." instance=ExtResource("1_a0ruf")]
+position = Vector2(431, 369)
+speed = 200
+
+[node name="HUD" parent="." instance=ExtResource("4_lc5ny")]
+
+[node name="BoostTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Goblin" parent="." instance=ExtResource("6_xdxlf")]
+position = Vector2(516, 379)
+
+[connection signal="game_active" from="." to="Goblin" method="_on_main_game_active"]
+[connection signal="game_end" from="." to="Player" method="_on_main_game_end"]
+[connection signal="game_end" from="." to="HUD" method="_on_main_game_end"]
+[connection signal="game_end" from="." to="Goblin" method="_on_main_game_end"]
+[connection signal="reset_game" from="HUD" to="." method="reset_game"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

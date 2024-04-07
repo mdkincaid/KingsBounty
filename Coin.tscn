@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://qsve10fpctoo"]
+
+[ext_resource type="Script" path="res://Coin.gd" id="1_1qur5"]
+[ext_resource type="Texture2D" uid="uid://crq0qiv31ekbp" path="res://coin.png" id="1_5xpbo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6wsr"]
+atlas = ExtResource("1_5xpbo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw8x4"]
+atlas = ExtResource("1_5xpbo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w3kd"]
+atlas = ExtResource("1_5xpbo")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v07im"]
+atlas = ExtResource("1_5xpbo")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yjhfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6wsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw8x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w3kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v07im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w3kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw8x4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5tdkf"]
+radius = 11.3333
+height = 29.3333
+
+[node name="Coin" type="Area2D"]
+position = Vector2(647, 317)
+script = ExtResource("1_1qur5")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yjhfn")
+frame = 1
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://coin.aseprite"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_5tdkf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
