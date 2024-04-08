@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://kelaiuqlmxfp"]
+[gd_scene load_steps=3 format=3 uid="uid://kelaiuqlmxfp"]
 
 [ext_resource type="Script" path="res://HUD.gd" id="1_20sdl"]
+[ext_resource type="Texture2D" uid="uid://cf2aj8urwmdxu" path="res://title.png" id="2_j4jbj"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_20sdl")
@@ -50,6 +51,7 @@ grow_vertical = 2
 text = "Reset Game"
 
 [node name="TitleLabel" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -77,6 +79,23 @@ offset_bottom = 97.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start Game"
+
+[node name="TitleImage" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(577, 324)
+texture = ExtResource("2_j4jbj")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://title.aseprite"
+}
 
 [connection signal="pressed" from="SpawnCoinsButton" to="." method="_on_spawn_coins_button_pressed"]
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

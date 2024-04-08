@@ -9,7 +9,7 @@ func _ready():
 	$ResetButton.hide() 
 	$ScoreLabel.hide() #
 	$SpawnCoinsButton.hide() # 
-	$TitleLabel.show() #
+	$TitleImage.show() #
 	$StartGameButton.show() #
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,6 +34,6 @@ func _on_reset_button_pressed():
 
 func _on_start_game_button_pressed():
 	start_game.emit()
-	$TitleLabel.hide()
+	$TitleImage.hide()
 	$StartGameButton.hide()
 	$ScoreLabel.show()
