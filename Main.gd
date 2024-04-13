@@ -65,6 +65,7 @@ func spawn_coins_and_hide():
 	
 	for i in 4:
 		var coins_per_quadrant = starting_coins / 4
+		print(coins_per_quadrant)
 	
 		for n in coins_per_quadrant:
 			var coin = coin_scene.instantiate()
@@ -86,14 +87,22 @@ func spawn_coins_and_hide():
 func get_rand_in_quadrant(quadrant):
 	var screen_size = get_viewport_rect().size
 	var screen_origin = get_viewport_rect().position
+	var score_x = $HUD/ScoreImage.get_rect().size.x
+	var score_y = $HUD/ScoreImage.get_rect().size.y
 	
 	var randX = 0
 	var randY = 0
 	
 	match quadrant:
 		0:
-			randX = randf_range(screen_origin.x, ( screen_size.x / 2 ))
-			randY = randf_range(screen_origin.y, ( screen_size.y / 2 ))
+			if (randi() % 2):
+				randX = randf_range(score_x, ( screen_size.x / 2 ))
+				randY = randf_range(screen_origin.y, ( screen_size.y / 2 ))
+				print("one")
+			else:
+				randX = randf_range(screen_origin.x, ( screen_size.x / 2 ))
+				randY = randf_range(score_y, ( screen_size.y / 2 ))
+				print("zero")
 		1:
 			randX = randf_range(( screen_size.x / 2 ), screen_size.x)
 			randY = randf_range(screen_origin.y, ( screen_size.y / 2 ))

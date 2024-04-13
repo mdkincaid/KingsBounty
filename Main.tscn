@@ -23,7 +23,7 @@ sources/3 = SubResource("TileSetAtlasSource_3875k")
 script = ExtResource("1_ik6je")
 coin_scene = ExtResource("2_3glw7")
 boost_scene = ExtResource("3_jj6v8")
-coins_to_win = 25
+coins_to_win = 4
 
 [node name="Player" parent="." instance=ExtResource("1_a0ruf")]
 position = Vector2(455, 414)
