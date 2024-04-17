@@ -38,7 +38,7 @@ func toggle_title(isVisible):
 	
 func toggle_score(isVisible):
 	$ScoreLabel.visible = isVisible
-	$ScoreImage.visible = isVisible
+	#$ScoreImage.visible = isVisible
 
 func _on_start_game_button_pressed():
 	start_game.emit()

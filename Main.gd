@@ -18,6 +18,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_pressed("reset_game"):
+		reset_game()
 	if player_score >= coins_to_win:
 		game_over("Player")
 	if goblin_score >= coins_to_win:
@@ -62,6 +64,7 @@ func clear_all_boosts():
 func spawn_coins_and_hide():
 	var screen_size = get_viewport_rect().size
 	var screen_origin = get_viewport_rect().position
+	set_q0_spawn_area()
 	
 	for i in 4:
 		var coins_per_quadrant = starting_coins / 4
@@ -137,6 +140,22 @@ func spawn_boost():
 
 func show_coins():
 	get_tree().call_group("Coins", "show")
+	
+func set_q0_spawn_area():
+	var screen_size = get_viewport_rect().size
+	var screen_origin = get_viewport_rect().position
+	var score_x = $HUD/ScoreImage.get_rect().size.x
+	var score_y = $HUD/ScoreImage.get_rect().size.y
+	var points = [
+			Vector2(score_x, screen_origin.y),
+			Vector2((screen_size.x / 2), screen_origin.y),
+			Vector2((screen_size.x / 2), (screen_size.y / 2)),
+			Vector2(screen_origin.x, (screen_size.y / 2)),
+			Vector2(screen_origin.x, score_y),
+			Vector2(score_x, score_y)
+		]
+	$SpawnArea.polygon = points
+	$SpawnArea.color = Color(1, 1, 1, 0)
 
 func reset_game():
 	get_tree().reload_current_scene()

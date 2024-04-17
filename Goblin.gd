@@ -9,8 +9,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if game_active:
-		move_to_closest_coin(delta)
+	pass
+	#if game_active:
+		#move_to_closest_coin(delta)
 
 func get_closest_coin_or_null():
 	var all_coins = get_tree().get_nodes_in_group("Coins")
